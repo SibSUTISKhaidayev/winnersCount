@@ -13,6 +13,11 @@ int main()
     printf("Entering matches count: ");// введите колтчество матчей
     scanf("%i", &m);// то есть количество ячеек в каждой строке массива
 
+    /*
+     * так как баллы за соревнования должны быть не отрицательными
+     * создадим БЕЗЗНАКОВЫЙ целочисленный массив
+     * unsigned - беззнаковый int - целочисленный
+     */
     unsigned int A[n][m];// массив размером n строк и m столбцов
 
     for (unsigned int i = 0; i < n; ++i)// заполним массив результатами
@@ -28,27 +33,25 @@ int main()
          }
     }
 
-    unsigned int max = 0,
-                 maxCount = 0;
-
+    unsigned int max = 0,// переменная для нахождения наибольшего результата
+                 maxCount = 0;//для количества наибольших результатов
+    // и так ищем ...
     for(unsigned int i = 0; i < n; i++){
         for(unsigned int j = 0; j < m; j++){
-            unsigned int k = A[i][j];
-            if( max == k ){
-                maxCount++;
-//                printf("#%i#%i == max: %i", i, j, A[i][j]);
+            unsigned int k = A[i][j];// число из массива
+            if( max == k ){//если максимальное число равно k
+                maxCount++;// увеличиваем количество на 1
             }
-            if( max < k ){
-                max = k;
-                maxCount = 1;
-//                printf("#%i#%i max: %i ", i, j, max);
+            if( max < k ){// если число k больше чем максимум
+                max = k;// присваиваем его к максимуму
+                maxCount = 1;// и понимаеим что максимум пока только один.
             }
         }
     }
 
-    printf("\n----------------------\n"
-           "maximum points of play: %i\n"
-           "winners quantity: %i", max, maxCount);
+    printf("\n----------------------\n"// разделение просто так
+           "maximum points of play: %i\n"// максимальный балл за игру
+           "winners quantity: %i", max, maxCount);// количество победителей
 
     return 0;
 }
